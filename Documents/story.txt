@@ -1,0 +1,30 @@
+As we want to start SAMAS 2.0 which has a different tech stack this story acts as a medium for developer to start learning the same tech stack within
+
+# Backend Tech Stack
+
+## .Net core Web API
+### Exploring.Net core vs .Net framework (in terms of framework dll we are consuming)
+### .Net Core Web API Leaming
+### Domain driven Design (Clean Architecture)
+### PostgreSQL Integration in Web API
+### CQRS (Command Query Response Seggregation)
+### CORS (Cross Origin Resource Sharing)
+### Routing in Net Core Web APl
+### Authorization in Web API
+### Middleware integration
+### Mediator Design Pattern and usage of MediatR with CQRS
+### Boot strapping a Web API
+
+## Communication Framework
+### gRPC
+### RabbitMQ
+### Apache Kafka
+### Web Socket
+### SignalR
+
+## PostgreSQL and MySQL
+### Comparison of PostgreSQL vs MySQL interms of performance for Read and Write
+### Complexity in integration with.Net Core Web API
+### MongoDB database for unstructure requirement.
+
+Note: Create POC WebAPls which has integrations with PostgreSQL and MySQL both and demonstrate the communication between them via all different communication frameworks.

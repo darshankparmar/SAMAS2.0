@@ -1,0 +1,72 @@
+@API_HostAddress = https://localhost:7253
+
+### Get all customers
+GET {{API_HostAddress}}/api/customer
+Accept: application/json
+
+### Get a specific customer by ID
+GET {{API_HostAddress}}/api/customer/1
+Accept: application/json
+
+### Register a new customer
+POST {{API_HostAddress}}/api/customer
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "mobileNo": "123-456-7890",
+  "address": "123 Main St, Anytown, USA"
+}
+
+### Update an existing customer
+PUT {{API_HostAddress}}/api/customer/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "John Doe Updated",
+  "email": "john.doe@example.com",
+  "mobileNo": "123-456-7890",
+  "address": "123 Main St, Anytown, USA"
+}
+
+### Delete a customer
+DELETE {{API_HostAddress}}/api/customer/3
+
+
+### Get all products
+GET {{API_HostAddress}}/api/product
+Accept: application/json
+
+### Get a specific product by ID
+GET {{API_HostAddress}}/api/product/1
+Accept: application/json
+
+### Register a new product
+POST {{API_HostAddress}}/api/product
+Content-Type: application/json
+
+{
+  "id": 0,
+  "name": "Product 1",
+  "description": "Description of Product 1",
+  "price": 99.99,
+  "isAvailable": true
+}
+
+### Update an existing product
+PUT {{API_HostAddress}}/api/product/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Product 1 Updated",
+  "description": "Updated description of Product 1",
+  "price": 99.99,
+  "isAvailable": true
+}
+
+### Delete a product
+DELETE {{API_HostAddress}}/api/product/1

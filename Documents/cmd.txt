@@ -1,0 +1,11 @@
+dotnet new sln --name stackup_vsc_setup
+
+dotnet new webapi --name Stackup.Api
+
+dotnet sln add .\Stackup.Api\Stackup.Api.csproj
+
+cd Stackup.API
+
+dotnet build
+
+dotnet run

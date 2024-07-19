@@ -1,0 +1,117 @@
+WebApplication
+│   appsettings.json
+│   Program.cs
+│   Startup.cs
+│   WebApplication.csproj
+│
+├───Configuration/Extensions
+│       ServiceCollection.cs
+│       ApplicationBuilder.cs
+├───Controllers
+│       ...
+├───Commands
+│       ...
+├───Queries
+│       ...
+├───Models/DTOs
+│       ...
+├───Interfaces
+│       ...
+├───Infrastructure
+│       ...
+
+
+
+
+                                     +------------------------+
+                                     |        Client          |
+                                     +------------------------+
+                                              | HTTP Requests
+                                              v
+                       +--------------------------------------------------+
+                       |                    API Gateway                   |
+                       |   (Handles CORS, Routing, Authentication, etc.)  |
+                       +--------------------------------------------------+
+                                     |         |          |
+                                     v         v          v
+                          +----------------+   +----------------+
+                          |   User API     |   |   ToDo API     |
+                          | (Microservice) |   | (Microservice) |
+                          +----------------+   +----------------+
+                          |    Middleware  |   |    Middleware  |
+                          |   (Logging,    |   |   (Logging,    |
+                          | Error Handling)|   | Error Handling)|
+                          +----------------+   +----------------+
+                          | MediatR CQRS   |   | MediatR CQRS   |
+                          | Handlers       |   | Handlers       |
+                          +----------------+   +----------------+
+                          |    Repositories|   |    Repositories|
+                          |   (Data Access)|   |   (Data Access)|
+                          +----------------+   +----------------+
+                          |    Domain      |   |    Domain      |
+                          |  (Entities,    |   |  (Entities,    |
+                          |   Business     |   |   Business     |
+                          |   Logic)       |   |   Logic)       |
+                          +----------------+   +----------------+
+                          |    Database    |   |    Database    |
+                          +----------------+   +----------------+
+						  
+						  
+						  
+Root/
+│
+├── ApiGateway/                         <-- API Gateway Project
+│   ├── Controllers/
+│   ├── Startup.cs
+│   └── appsettings.json
+│
+├── UserApi/                            <-- User Management Microservice Project
+│   ├── Controllers/
+│   ├── Data/
+│   │   ├── Repositories/
+│   │   ├── UserDbContext.cs            <-- Entity Framework DbContext for PostgreSQL
+│   │   ├── UserDbContextMySQL.cs       <-- Entity Framework DbContext for MySQL
+│   ├── Domain/
+│   │   ├── Entities/
+│   │   └── Services/
+│   ├── Middleware/
+│   ├── Models/
+│   ├── Services/
+│   ├── MediatR/
+│   ├── Startup.cs
+│   └── appsettings.json
+│
+├── ToDoApi/                            <-- ToDo Microservice Project
+│   ├── Controllers/
+│   ├── Data/
+│   │   ├── Repositories/
+│   │   ├── ToDoDbContext.cs            <-- Entity Framework DbContext for PostgreSQL
+│   │   ├── ToDoDbContextMySQL.cs       <-- Entity Framework DbContext for MySQL
+│   ├── Domain/
+│   │   ├── Entities/
+│   │   └── Services/
+│   ├── Middleware/
+│   ├── Models/
+│   ├── Services/
+│   ├── MediatR/
+│   ├── Startup.cs
+│   └── appsettings.json
+│
+├── Shared/
+│   ├── Constants/
+│   └── Utilities/
+│
+├── Infrastructure/
+│   ├── Logging/
+│   └── Identity/
+│
+├── Tests/
+│   ├── UserApi.Tests/
+│   ├── ToDoApi.Tests/
+│   └── IntegrationTests/
+│
+├── SolutionName.sln
+└── README.md
+
+
+
