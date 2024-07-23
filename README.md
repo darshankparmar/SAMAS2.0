@@ -780,14 +780,18 @@ rabbitmq-plugins enable rabbitmq_stream
 
 
 
+![Queues-vs-Stream-infographic-1.jpg](https://eraser.imgix.net/workspaces/taeLmd0SparAzn9iGbGE/MIF6Cd5YZdOLD4uYvD0awU85o1t2/nEpY_n31XFSj1Hoe4Px1c.jpg?ixlib=js-3.7.0 "Queues-vs-Stream-infographic-1.jpg")
 
 
 
 
 
-
-
-
+-  comparison between different aspects of RabbitMQ queues and streams.
+|  | Queues | Streams |
+| ----- | ----- | ----- |
+| **Message Handling** | Messages in a queue are processed in a FIFO (First-In-First-Out) order. Once a message is consumed, it is removed from the queue. | Streams provide append-only logs where messages are appended and consumed multiple times by different consumers. |
+| **Message Storage** | Messages are transient unless explicitly set to be persistent. They are removed from the queue after consumption. | Messages are retained based on configurable retention policies (time-based or size-based), allowing for longer-term storage. |
+| **Consumption** | Messages are consumed by a single consumer or in a competing fashion among multiple consumers. | Allows multiple consumers to read the same message independently, offering more flexible consumption patterns. |
 
 
 
