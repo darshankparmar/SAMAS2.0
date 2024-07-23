@@ -712,9 +712,39 @@ RabbitMQ requires a 64-bit supported version of Erlang for Windows to be install
 
 
 
-
-
 **Download : **[﻿github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.5/rabbitmq-server-3.13.5.exe](https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.13.5/rabbitmq-server-3.13.5.exe) 
+
+
+
+rabbitmq directory :
+
+> C:\Program Files\RabbitMQ Server\rabbitmq_server-3.7.12\sbin
+
+
+
+## Enabling the Management Plugin
+The management plugin is included in the RabbitMQ distribution. Like any other [﻿plugin](https://www.rabbitmq.com/docs/plugins), it must be enabled before it can be used. That's done using [﻿rabbitmq-plugins](https://www.rabbitmq.com/docs/man/rabbitmq-plugins.8):
+
+```
+rabbitmq-plugins enable rabbitmq_management
+```
+Node restart is not required after plugin activation.
+
+
+
+## Enabling the Stream Plugin
+The Stream plugin is included in the RabbitMQ distribution. Before clients can successfully connect, it must be enabled using [﻿rabbitmq-plugins](https://www.rabbitmq.com/docs/cli):
+
+```
+rabbitmq-plugins enable rabbitmq_stream
+```
+
+
+
+
+
+
+
 
 
 
@@ -744,6 +774,12 @@ RabbitMQ requires a 64-bit supported version of Erlang for Windows to be install
 ![image.png](https://eraser.imgix.net/workspaces/taeLmd0SparAzn9iGbGE/MIF6Cd5YZdOLD4uYvD0awU85o1t2/J2UJdWvhpfISLVCbwZZg5.png?ixlib=js-3.7.0 "image.png")
 
 ### 7. Reliable Publishing with Publisher Confirms
+
+
+
+
+
+
 
 
 
