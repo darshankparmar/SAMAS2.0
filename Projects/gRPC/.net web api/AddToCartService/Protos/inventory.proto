@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "InventoryService.Protos";
+
+package inventory;
+
+service Inventory {
+  rpc GetProductList (Empty) returns (ProductList);
+}
+
+message Empty {}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  int32 quantity = 3;
+}
+
+message ProductList {
+  repeated Product products = 1;
+}
