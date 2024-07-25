@@ -607,6 +607,65 @@ public class ProductController : ControllerBase
 
 
 
+# WebSocket
+---
+
+**WebSocket** is a protocol that allows for full-duplex communication channels over a single TCP connection. This means that a server and a client can send messages to each other at any time, unlike traditional HTTP where the client must request information.
+
+#### Features of WebSocket:
+- **Full-duplex communication**: Both server and client can send messages independently.
+- **Persistent connection**: Once established, the connection remains open until explicitly closed.
+- **Low latency**: Ideal for applications requiring real-time updates, such as live chat, gaming, or live sports updates.
+
+
+
+
+![1_ZneDqeqhmGYCre0fUJFQzQ.webp](https://eraser.imgix.net/workspaces/taeLmd0SparAzn9iGbGE/MIF6Cd5YZdOLD4uYvD0awU85o1t2/OlfrjILTeUdIh6GXpYEwg.webp?ixlib=js-3.7.0 "1_ZneDqeqhmGYCre0fUJFQzQ.webp")
+
+
+
+
+
+# SignalR
+---
+
+**SignalR** is a library for ASP.NET that simplifies adding real-time web functionality to applications. It allows bi-directional communication between server and client, using WebSocket as the default transport protocol and falling back to other techniques when necessary.
+
+#### Features of SignalR:
+- **Real-time updates**: Ideal for chat apps, notifications, or any live updates.
+- **Automatic reconnection**: Handles reconnections if the connection drops.
+- **Scalability**: Can scale out to handle multiple connections using Azure SignalR Service or other backplanes.
+
+
+
+
+### Summary
+- **WebSocket**:
+    - Enables real-time, two-way communication between server and client.
+    - Requires explicit handling of messages and connections.
+    - Example: Custom middleware for handling WebSocket connections.
+- **SignalR**:
+    - Simplifies real-time communication using WebSocket and other fallback techniques.
+    - Automatically handles reconnections and scales well.
+    - Example: Hub-based model for defining server-client communication.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Communication framework for microservices
