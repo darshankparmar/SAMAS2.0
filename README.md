@@ -796,7 +796,42 @@ rabbitmq-plugins enable rabbitmq_stream
 
 
 
+# RPC
+---
+
+RPC **(Remote Procedure Call)** enables two distinct computer programs to communicate with each other over a network. In this communication model, one program requests a service or procedure from another program, which processes the request and sends the results back to the first program. RPC follows the client-server model, where the requesting program acts as the client and the service-providing program operates as the server.
+
+![image.png](https://eraser.imgix.net/workspaces/taeLmd0SparAzn9iGbGE/MIF6Cd5YZdOLD4uYvD0awU85o1t2/OzKoHyuJrUcBGM7ohe9fX.png?ixlib=js-3.7.0 "image.png")
 
 
+
+#  **gRPC**
+---
+
+gRPC is a cross-platform open source remote procedure call (RPC) framework that enables client and server applications to communicate with each other remotely and transparently. It was developed by google which uses HTTP/2. gRPC utilizes Remote Procedure Call (RPC) technology to facilitate communication between disparate services using a protocol buffer.The protocol buffer serves as a conduit for structured data exchange between systems.
+
+
+
+![image.png](https://eraser.imgix.net/workspaces/taeLmd0SparAzn9iGbGE/MIF6Cd5YZdOLD4uYvD0awU85o1t2/LGowHaUU-LIw4-USKLQ0t.png?ixlib=js-3.7.0 "image.png")
+
+
+
+### **Protocol Buffer:**
+gRPC uses protocol buffers as both its Interface Definition Language (IDL) and as its underlying message interchange format. Protocol buffers, aka protobufs, are a language-agnostic protocol for serializing structured data and they can be used between different programming languages. They are strongly typed, which ensures that the data is consistent and well-formed across different applications and services.As this is in the form of a contract, both the client and server need to have the same proto file. 
+
+![image.png](https://eraser.imgix.net/workspaces/taeLmd0SparAzn9iGbGE/MIF6Cd5YZdOLD4uYvD0awU85o1t2/V6MlBeasxRYqOpOoergE0.png?ixlib=js-3.7.0 "image.png")
+
+
+
+There are four types of gRPC communication. They are:
+
+- **Unary RPC**
+    - Unary RPCs where the client sends a single request to the server and gets a single response back, just like a normal function call.
+- **Server Streaming RPC**
+    - The client sends a single request to the server and gets back several messages that it reads sequentially.
+- **Client Streaming RPC**
+    - The client sends multiple messages to the server, and the server can process them as they arrive before sending a single response back to the client.
+- **Bidirectional Streaming RPC**
+    - Bidirectional streaming is a powerful feature of GRPC that enables the client and server to send and receive multiple streams of data simultaneously.
 
 
