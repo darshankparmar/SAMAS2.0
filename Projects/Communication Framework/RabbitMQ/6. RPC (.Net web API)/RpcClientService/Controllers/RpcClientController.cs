@@ -44,8 +44,10 @@ namespace RpcClientService.Controllers
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (model, ea) =>
             {
+                // Tries to remove the task completion source associated with the correlation ID from the callback mapper. If it doesn't exist, it returns.
                 if (!_callbackMapper.TryRemove(ea.BasicProperties.CorrelationId, out var tcs))
                     return;
+
                 var body = ea.Body.ToArray();
                 var response = Encoding.UTF8.GetString(body);
                 tcs.TrySetResult(response);
@@ -60,6 +62,7 @@ namespace RpcClientService.Controllers
             props.CorrelationId = correlationId;
             props.ReplyTo = _replyQueueName;
             var messageBytes = Encoding.UTF8.GetBytes(message);
+            // Creates a new task completion source and adds it to the callback mapper with the correlation ID as the key.
             var tcs = new TaskCompletionSource<string>();
             _callbackMapper.TryAdd(correlationId, tcs);
 

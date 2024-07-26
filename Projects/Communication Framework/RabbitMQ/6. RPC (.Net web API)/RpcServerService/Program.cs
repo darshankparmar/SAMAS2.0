@@ -1,3 +1,5 @@
+using RpcServerService.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,7 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
-
+builder.Services.AddSingleton<RpcServer>();
 
 var app = builder.Build();
 
@@ -18,8 +20,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseWebSockets();
-app.UseRouting();
+app.UseAuthorization();
 app.MapControllers();
+
+app.Services.GetRequiredService<RpcServer>();
 
 app.Run();

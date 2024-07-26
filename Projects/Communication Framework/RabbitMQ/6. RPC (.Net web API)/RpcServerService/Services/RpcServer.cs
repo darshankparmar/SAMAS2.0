@@ -14,16 +14,20 @@ namespace RpcServerService.Services
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();
             _channel.QueueDeclare(queue: "rpc_queue", durable: false, exclusive: false, autoDelete: false, arguments: null);
+            // Sets Quality of Service (QoS) settings to process one message at a time.
             _channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-            var consumer = new EventingBasicConsumer(_channel);
+            var consumer = new EventingBasicConsumer(_channel); // Creates a new event-based consumer.
+
+            // Starts consuming messages from the "rpc_queue" with manual acknowledgments.
             _channel.BasicConsume(queue: "rpc_queue", autoAck: false, consumer: consumer);
+
             consumer.Received += (model, ea) =>
             {
                 string response = string.Empty;
                 var body = ea.Body.ToArray();
-                var props = ea.BasicProperties;
-                var replyProps = _channel.CreateBasicProperties();
-                replyProps.CorrelationId = props.CorrelationId;
+                var props = ea.BasicProperties; // Gets the properties of the received message.
+                var replyProps = _channel.CreateBasicProperties(); // Creates properties for the reply message.
+                replyProps.CorrelationId = props.CorrelationId; // Sets the correlation ID for the reply message.
 
                 try
                 {

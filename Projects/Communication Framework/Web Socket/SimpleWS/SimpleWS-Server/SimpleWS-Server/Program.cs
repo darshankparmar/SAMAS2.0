@@ -4,11 +4,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://localhost:6969");
+
 var app = builder.Build();
-app.UseWebSockets();
 
-var connections = new List<WebSocket>();
+app.UseWebSockets(); // This line tells the app to use WebSockets, a protocol for two-way communication between a client and server.
 
+var connections = new List<WebSocket>(); // This creates a list to keep track of all WebSocket connections.
 
 app.Map("/ws", async context =>
 {
@@ -54,18 +55,18 @@ async Task ReceiveMessage(WebSocket socket, Action<WebSocketReceiveResult, byte[
     }
 }
 
-async Task Broadcast(string message)
-{
-    var bytes = Encoding.UTF8.GetBytes(message);
-    foreach (var socket in connections)
-    {
-        if (socket.State == WebSocketState.Open)
-        {
-            var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
-            await socket.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
-        }
-    }
-}
+// async Task Broadcast(string message)
+// {
+//     var bytes = Encoding.UTF8.GetBytes(message);
+//     foreach (var socket in connections)
+//     {
+//         if (socket.State == WebSocketState.Open)
+//         {
+//             var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
+//             await socket.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+//         }
+//     }
+// }
 
 async Task BroadcastExpectSender(WebSocket ws, string message)
 {
