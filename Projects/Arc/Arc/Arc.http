@@ -1,0 +1,6 @@
+@Arc_HostAddress = http://localhost:5233
+
+GET {{Arc_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
