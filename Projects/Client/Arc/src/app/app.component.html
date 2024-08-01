@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <base href="/">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+        <li><a routerLink="/users" routerLinkActive="active">Users</a></li>
+        <li><a routerLink="/companies" routerLinkActive="active">Companies</a></li>
+        <li><button (click)="logout()">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <footer>
+    <p>&copy; 2024 My Angular App</p>
+  </footer>
+</body>
+</html>

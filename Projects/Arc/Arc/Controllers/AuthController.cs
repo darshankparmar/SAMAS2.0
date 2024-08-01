@@ -39,7 +39,11 @@ namespace Arc.Controllers
                 using JsonDocument doc = JsonDocument.Parse(content);
                 JsonElement root = doc.RootElement;
                 string accessToken = root.GetProperty("access_token").GetString() ?? string.Empty;
-                return Content($"Bearer {accessToken}", "application/json");
+                var result = new
+                {
+                    token = accessToken
+                };
+                return Ok(result);
             }
             else
                 return BadRequest(content);

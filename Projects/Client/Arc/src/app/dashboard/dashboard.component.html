@@ -1,0 +1,20 @@
+<!-- dashboard.component.html -->
+
+<div class="dashboard">
+  <h1>Dashboard</h1>
+
+  <!-- Display a loading message while data is being fetched -->
+  <div *ngIf="homeData.length === 0">
+    <p>Loading data...</p>
+  </div>
+
+  <!-- Display the list of home data once it's available -->
+  <ul *ngIf="homeData.length > 0">
+    <li *ngFor="let item of homeData">{{ item }}</li>
+  </ul>
+
+  <!-- Display an error message if there's an error fetching the data -->
+  <div *ngIf="homeData.length === 0 && error">
+    <p>Failed to fetch home data. Please try again later.</p>
+  </div>
+</div>
