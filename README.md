@@ -894,3 +894,152 @@ There are four types of gRPC communication. They are:
     - Bidirectional streaming is a powerful feature of GRPC that enables the client and server to send and receive multiple streams of data simultaneously.
 
 
+
+
+# WebRTC:
+
+## 1. Introduction to WebRTC
+WebRTC (Web Real-Time Communication) is an open-source project that enables peer-to-peer (P2P) audio, video, and data sharing directly between web browsers without the need for plugins. It powers a wide range of applications from video conferencing to file sharing, all within a standard web browser.
+
+## 2. Key Components of WebRTC
+### Media Streams
+WebRTC allows capturing, transmitting, and receiving audio and video streams in real-time. The `getUserMedia()` API is commonly used to access media devices like cameras and microphones.
+
+### RTCPeerConnection
+This is the core of WebRTC, responsible for handling the connections between peers, including negotiating, establishing, and maintaining the connection.
+
+### RTCDataChannel
+WebRTC also supports sending arbitrary data between peers using RTCDataChannels, which are reliable and low-latency channels.
+
+### ICE (Interactive Connectivity Establishment)
+ICE is a framework used by WebRTC to find the best path to connect peers across various network configurations, using STUN and TURN servers if necessary.
+
+## 3. WebRTC Signaling Process
+### Signaling Channels
+WebRTC does not define a signaling protocol, so developers can use WebSocket, HTTP, or any other method to exchange session control messages between peers.
+
+### Offer/Answer Model
+WebRTC uses the Offer/Answer model, where one peer sends an offer with connection parameters, and the other peer responds with an answer.
+
+### SDP (Session Description Protocol)
+SDP is a format for describing the multimedia communication sessions. It includes codec, format, network information, and other session details.
+
+## 4. WebRTC Connection Flow
+### Step 1: Establishing the Connection
+- **Signaling:** Exchange of SDP and ICE candidates between peers.
+- **ICE Candidate Exchange:** Finding the best route for communication.
+- **DTLS Handshake:** Securing the connection using DTLS.
+
+### Step 2: Media & Data Channel Setup
+- **Setting up Media Streams:** Using `getUserMedia()` and `addTrack()`.
+- **Creating Data Channels:** Establishing RTCDataChannels for data transfer.
+
+### Step 3: Connection Maintenance
+- **ICE Reconnection:** Handling network changes and maintaining the connection.
+- **Periodic Connectivity Checks:** Using STUN/TURN servers to ensure connectivity.
+
+### Step 4: Closing the Connection
+- **Closing Peer Connection:** Releasing resources using `close()` method on RTCPeerConnection.
+- **Cleanup:** Removing event listeners and clearing references.
+
+## 5. Security in WebRTC
+### Encryption
+WebRTC encrypts all media streams to protect them from eavesdropping.
+
+### DTLS (Datagram Transport Layer Security)
+DTLS is used to secure the data channel and the connection between peers.
+
+### SRTP (Secure Real-Time Protocol)
+SRTP provides encryption, message authentication, and integrity, as well as replay protection for RTP data.
+
+## 6. WebRTC API Overview
+### getUserMedia()
+The `getUserMedia()` API is used to access the user's camera and microphone, providing the media streams needed for communication.
+
+### RTCPeerConnection API
+This API includes methods for handling connections:
+- `createOffer()`, `createAnswer()`
+- `setLocalDescription()`, `setRemoteDescription()`
+- `addIceCandidate()`, `onicecandidate`
+
+### RTCDataChannel API
+This API handles data channels, with methods for creating and managing data channels between peers.
+
+## 7. Common WebRTC Use Cases
+### Video Conferencing
+Enabling real-time video chat applications.
+
+### File Sharing
+Using RTCDataChannels for peer-to-peer file transfer.
+
+### Online Gaming
+Low-latency data transfer for real-time multiplayer games.
+
+## 8. Challenges and Best Practices
+### Network Variability
+Handling various network conditions and maintaining a stable connection.
+
+### Scalability
+Strategies for scaling WebRTC to support many users.
+
+### Browser Support
+Cross-browser compatibility and handling differences in implementation.
+
+## 9. Advanced Topics
+### Using WebRTC with mediaMTX
+- Integration examples and specific use cases.
+
+### Optimizing WebRTC Performance
+- Tips for improving latency, bandwidth usage, and media quality.
+
+## 10. Conclusion
+WebRTC is a powerful tool for building real-time communication applications. It provides all the necessary components for creating secure, high-quality audio, video, and data channels directly within the browser.
+
+## 11. References and Further Reading
+- [WebRTC Official Documentation](https://webrtc.org/)
+- [MDN WebRTC API Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
+- [WebRTC for the Curious](https://webrtcforthecurious.com/)
+
+
+
+
+# STUN (Session Traversal Utilities for NAT)
+
+## Purpose: 
+STUN is used to discover the public IP address and the type of NAT (Network Address Translation) that a device is behind. It helps a device determine its external IP address and port so that it can communicate with other devices on the internet.
+
+## How It Works: 
+When a device behind a NAT wants to communicate with another device, it sends a request to a STUN server. The STUN server then responds with the external IP address and port of the device as seen by the server. This information is crucial for setting up direct peer-to-peer connections.
+
+## Use Case: 
+STUN is mainly used for scenarios where the NAT is not too restrictive and allows direct communication between peers after the public IP is discovered.
+
+# TURN (Traversal Using Relays around NAT)
+
+## Purpose: 
+TURN is used when direct peer-to-peer communication is not possible due to strict NATs or firewalls. In such cases, TURN servers relay data between peers.
+
+## How It Works: 
+Unlike STUN, which only provides the public IP address, TURN actually relays the media traffic between the two peers. When a direct connection fails, the media traffic (audio, video, or data) is sent through a TURN server, which then forwards it to the other peer.
+
+## Use Case: 
+TURN is used when STUN alone is not sufficient to establish a connection, often in cases where both peers are behind symmetric NATs or when firewalls block direct communication.
+
+# ICE (Interactive Connectivity Establishment)
+
+## Purpose: 
+ICE is a framework used to find the best possible path to connect peers. It combines the use of STUN and TURN to achieve this.
+
+## How It Works: 
+ICE gathers a list of potential connection candidates, which include local IP addresses, STUN-discovered public IP addresses, and TURN server addresses. It then tests all possible paths to find the most efficient route for communication.
+
+## Use Case: 
+ICE is the overall mechanism in WebRTC that ensures a robust and optimal connection by trying different methods (direct or relayed via TURN) to establish communication between peers.
+
+
+## Summary
+
+- `STUN` helps determine your public IP and NAT type, allowing for direct connections.
+- `TURN` relays traffic when direct connections are not possible due to strict network conditions.
+- `ICE` orchestrates the process, using STUN and TURN to find the best way to connect peers.
+
